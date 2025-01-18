@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <limits.h> 
+#define EXIT_CODE -999 
+
+int main() {
+    int numero;
+    int menor = INT_MAX; // Inicializa com o maior valor possível
+    int *pNumero = &numero;
+    int *pMenor = &menor;
+
+    printf("Digite numeros para encontrar o menor (digite %d para sair):\n", EXIT_CODE);
+
+    while (1) {
+        printf("Digite um numero: ");
+        scanf("%d", pNumero);
+
+        // Verifica se é o código de saída
+        if (*pNumero == EXIT_CODE) {
+            break;
+        }
+
+        // Atualiza o menor valor, se necessário
+        if (*pNumero < *pMenor) {
+            *pMenor = *pNumero;
+        }
+
+        printf("O menor valor fornecido ate agora e: %d\n", *pMenor);
+    }
+
+    printf("Programa finalizado. O menor valor informado foi: %d\n", *pMenor);
+    return 0;
+}
