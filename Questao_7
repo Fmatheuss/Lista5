@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+void copiarString(const char *origem, char *destino) {
+    while (*origem != '\0') {
+        *destino = *origem;
+        origem++;
+        destino++;
+    }
+    *destino = '\0'; 
+}
+
+int main() {
+    char stringOrigem[100]; 
+    char stringDestino[100]; 
+
+    
+    printf("Digite uma string: ");
+    fgets(stringOrigem, sizeof(stringOrigem), stdin);
+
+    char *p = stringOrigem;
+    while (*p != '\0') {
+        if (*p == '\n') {
+            *p = '\0';
+            break;
+        }
+        p++;
+    }
+
+    
+    copiarString(stringOrigem, stringDestino);
+
+    // Exibindo as strings
+    printf("\nString original: %s\n", stringOrigem);
+    printf("String copiada: %s\n", stringDestino);
+
+    return 0;
+}
