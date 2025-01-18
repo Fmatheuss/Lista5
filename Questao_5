@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    char string[100]; // Define um espaço máximo para a string
+    char *p;          // Ponteiro para percorrer a string
+    int tamanho = 0;
+
+    // Entrada da string
+    printf("Digite uma string: ");
+    fgets(string, sizeof(string), stdin);
+
+    // Remove o caractere de nova linha, se presente
+    if (string[0] != '\0') {
+        for (p = string; *p != '\0'; p++) {
+            if (*p == '\n') {
+                *p = '\0';
+                break;
+            }
+        }
+    }
+
+    // Calcula o tamanho da string usando o ponteiro
+    for (p = string; *p != '\0'; p++) {
+        tamanho++;
+    }
+
+    // Exibe o resultado
+    printf("O tamanho da string e: %d\n", tamanho);
+
+    return 0;
+}
