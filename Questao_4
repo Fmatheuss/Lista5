@@ -1,0 +1,46 @@
+#include <stdio.h>
+#define TAM 5 
+
+int main() {
+    // Vetores para teste
+    int vetorInt[TAM];
+    float vetorFloat[TAM];
+    char vetorChar[TAM];
+
+    // Entrada de valores para os diferentes tipos
+    printf("Digite %d valores inteiros:\n", TAM);
+    for (int i = 0; i < TAM; i++) {
+        printf("vetorInt[%d]: ", i);
+        scanf("%d", &vetorInt[i]);
+    }
+
+    printf("\nDigite %d valores reais (float):\n", TAM);
+    for (int i = 0; i < TAM; i++) {
+        printf("vetorFloat[%d]: ", i);
+        scanf("%f", &vetorFloat[i]);
+    }
+
+    printf("\nDigite %d caracteres:\n", TAM);
+    for (int i = 0; i < TAM; i++) {
+        printf("vetorChar[%d]: ", i);
+        scanf(" %c", &vetorChar[i]);
+    }
+
+    // Exibindo valores e endereços dos vetores
+    printf("\nValores e enderecos do vetor de inteiros:\n");
+    for (int i = 0; i < TAM; i++) {
+        printf("vetorInt[%d] = %d, endereco = %p\n", i, vetorInt[i], (void*)&vetorInt[i]);
+    }
+
+    printf("\nValores e enderecos do vetor de floats:\n");
+    for (int i = 0; i < TAM; i++) {
+        printf("vetorFloat[%d] = %.2f, endereco = %p\n", i, vetorFloat[i], (void*)&vetorFloat[i]);
+    }
+
+    printf("\nValores e enderecos do vetor de caracteres:\n");
+    for (int i = 0; i < TAM; i++) {
+        printf("vetorChar[%d] = %c, endereco = %p\n", i, vetorChar[i], (void*)&vetorChar[i]);
+    }
+
+    return 0;
+}
