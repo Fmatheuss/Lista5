@@ -1,0 +1,24 @@
+#include <stdio.h>
+#define SWAP(type, a, b) { type temp = *a; *a = *b; *b = temp; }
+
+int main() {
+    int num1, num2;
+    int *p1 = &num1, *p2 = &num2;
+
+    printf("Digite o primeiro numero: ");
+    scanf("%d", p1);
+    printf("Digite o segundo numero: ");
+    scanf("%d", p2);
+
+    printf("\nAntes da troca:\n");
+    printf("Numero 1: %d\n", *p1);
+    printf("Numero 2: %d\n", *p2);
+
+    SWAP(int, p1, p2);
+
+    printf("\nDepois da troca:\n");
+    printf("Numero 1: %d\n", *p1);
+    printf("Numero 2: %d\n", *p2);
+
+    return 0;
+}
