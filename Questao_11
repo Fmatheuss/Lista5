@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int N, tamanho, i, j;
+    
+    // Solicita o valor de N e o tamanho dos vetores X e Y
+    printf("Digite o valor de N: ");
+    scanf("%d", &N);
+    
+    printf("Digite o tamanho dos vetores X e Y: ");
+    scanf("%d", &tamanho);
+    
+    // Inicializa o gerador de números pseudoaleatórios
+    srand(time(NULL));
+    
+    int X[tamanho], Y[tamanho];  // Vetores X e Y
+    int M[N][N];                  // Matriz M de coocorrências
+
+    // Inicializa a matriz M com 0
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            M[i][j] = 0;
+        }
+    }
+
+    // Preenche os vetores X e Y com números pseudoaleatórios no intervalo [0, N-1]
+    printf("Vetor X gerado: ");
+    for (i = 0; i < tamanho; i++) {
+        X[i] = rand() % N;
+        printf("%d ", X[i]);
+    }
+    printf("\n");
+
+    printf("Vetor Y gerado: ");
+    for (i = 0; i < tamanho; i++) {
+        Y[i] = rand() % N;
+        printf("%d ", Y[i]);
+    }
+    printf("\n");
+
+    // Calcula as coocorrências entre os elementos de X e Y
+    for (i = 0; i < tamanho; i++) {
+        M[X[i]][Y[i]]++;
+    }
+
+    // Exibe a matriz M
+    printf("\nMatriz M (coocorrencias):\n");
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            printf("%d ", M[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
