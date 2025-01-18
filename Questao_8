@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+char *buscarCaractere(const char *string, char caractere) {
+    // Percorre a string usando o ponteiro
+    while (*string != '\0') {
+        if (*string == caractere) {
+            return (char *)string; // Retorna o ponteiro para o caractere encontrado
+        }
+        string++;
+    }
+    return NULL; // Retorna NULL se o caractere não for encontrado
+}
+
+int main() {
+    char string[100];
+    char caractere;
+    char *resultado;
+
+    // Entrada da string
+    printf("Digite uma string: ");
+    fgets(string, sizeof(string), stdin);
+
+    // Remove o caractere de nova linha, se presente
+    char *p = string;
+    while (*p != '\0') {
+        if (*p == '\n') {
+            *p = '\0';
+            break;
+        }
+        p++;
+    }
+
+    // Entrada do caractere a ser buscado
+    printf("Digite o caractere a ser buscado: ");
+    scanf("%c", &caractere);
+
+    // Busca o caractere na string
+    resultado = buscarCaractere(string, caractere);
+
+    // Exibe o resultado
+    if (resultado != NULL) {
+        printf("Caractere '%c' encontrado na posicao: %ld\n", caractere, resultado - string);
+    } else {
+        printf("Caractere '%c' nao encontrado na string.\n", caractere);
+    }
+
+    return 0;
+}
