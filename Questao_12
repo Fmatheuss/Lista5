@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int N, tamanho, i, j;
+    
+    // Solicita o valor de N e o tamanho dos vetores X e Y
+    printf("Digite o valor de N: ");
+    scanf("%d", &N);
+    
+    printf("Digite o tamanho dos vetores X e Y: ");
+    scanf("%d", &tamanho);
+    
+    // Inicializa o gerador de números pseudoaleatórios
+    srand(time(NULL));
+    
+    int X[tamanho], Y[tamanho];  // Vetores X e Y
+    int M[N][N];                  // Matriz M de coocorrências
+
+    // Inicializa a matriz M com 0
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            M[i][j] = 0;
+        }
+    }
+
+    // Preenche o vetor X com números pseudoaleatórios no intervalo [0, N-1]
+    printf("Vetor X gerado: ");
+    for (i = 0; i < tamanho; i++) {
+        X[i] = rand() % N;
+        printf("%d ", X[i]);
+    }
+    printf("\n");
+
+    // Preenche o vetor Y com base na regra fornecida para cada elemento de X
+    printf("Vetor Y gerado: ");
+    for (i = 0; i < tamanho; i++) {
+        int r = rand() % 11;  // Gera um número aleatório r entre 0 e 10
+        
+        switch (r) {
+            case 1: case 2: case 3:
+                Y[i] = X[i];  // yi = xi (r entre 1 e 3)
+                break;
+            case 4: case 5:
+                Y[i] = (X[i] - 1 < 0) ? 0 : X[i] - 1;  // yi = xi - 1 (r entre 4 e 5)
+                break;
+            case 6: case 7:
+                Y[i] = (X[i] + 1 >= N) ? N - 1 : X[i] + 1;  // yi = xi + 1 (r entre 6 e 7)
+                break;
+            case 8: case 9:
+                Y[i] = (X[i] - 2 < 0) ? 0 : X[i] - 2;  // yi = xi - 2 (r entre 8 e 9)
+                break;
+            case 10:
+                Y[i] = (X[i] + 2 >= N) ? N - 1 : X[i] + 2;  // yi = xi + 2 (r igual a 10)
+                break;
+            default:
+                Y[i] = X[i];  // caso r = 0
+                break;
+        }
+        
+        printf("%d ", Y[i]);
+    }
+    printf("\n");
+
+    // Calcula as coocorrências entre os elementos de X e Y
+    for (i = 0; i < tamanho; i++) {
+        M[X[i]][Y[i]]++;
+    }
+
+    // Exibe a matriz M
+    printf("\nMatriz M (coocorrencias):\n");
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            printf("%d ", M[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
