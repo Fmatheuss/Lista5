@@ -1,0 +1,23 @@
+#include <stdio.h>
+#define TAM 2 
+
+int main() {
+    int numeros[TAM];   
+    int soma = 0;
+    int *pSoma = &soma;
+
+   
+    for (int i = 0; i < TAM; i++) {
+        printf("Digite o numero %d: ", i + 1);
+        scanf("%d", &numeros[i]);
+    }
+
+    for (int i = 0; i < TAM; i++) {
+        *pSoma += numeros[i];
+    }
+
+    printf("A soma dos números é: %d\n", *pSoma);
+    printf("O valor da soma está armazenado no endereço de memória: %p\n", (void*)pSoma);
+
+    return 0;
+}
